@@ -1,6 +1,6 @@
 {
   "name": "@exodus/netinfo",
-  "version": "1.4.2",
+  "version": "1.4.2-exodus.0",
   "description": "React Native Network Info API for iOS & Android",
   "main": "js/index.js",
   "typings": "typings/index.d.ts",
@@ -108,6 +108,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ExodusMovement/react-native-netinfo.git"
+    "url": "https://github.com/ExodusForks/react-native-netinfo.git"
   }
 }
