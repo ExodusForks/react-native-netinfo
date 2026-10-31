@@ -11,7 +11,7 @@
 'use strict';
 
 import {Platform} from 'react-native';
-import {RNCNetInfo, NetInfoEventEmitter} from './nativeInterface';
+import {RNCNetInfo, getNetInfoEventEmitter} from './nativeInterface';
 
 const DEVICE_CONNECTIVITY_EVENT = 'networkStatusDidChange';
 
@@ -66,7 +66,7 @@ const NetInfo = {
   ): {remove: () => void} {
     let listener;
     if (eventName === 'connectionChange') {
-      listener = NetInfoEventEmitter.addListener(
+      listener = getNetInfoEventEmitter().addListener(
         DEVICE_CONNECTIVITY_EVENT,
         appStateData => {
           handler({
@@ -162,4 +162,13 @@ const NetInfo = {
   },
 };
 
-module.exports = NetInfo;
+export const {
+  Events,
+  addEventListener,
+  removeEventListener,
+  getConnectionInfo,
+  isConnected,
+  isConnectionExpensive,
+} = NetInfo;
+
+export default NetInfo;
