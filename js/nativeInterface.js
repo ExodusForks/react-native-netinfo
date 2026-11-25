@@ -28,12 +28,12 @@ If none of these fix the issue, please open an issue on the Github repository: h
  * JavaScript code and the tests
  */
 let nativeEventEmitter = null;
-module.exports = {
-  RNCNetInfo,
-  get NetInfoEventEmitter() {
-    if (!nativeEventEmitter) {
-      nativeEventEmitter = new NativeEventEmitter(RNCNetInfo);
-    }
-    return nativeEventEmitter;
-  },
-};
+
+export {RNCNetInfo};
+
+export function getNetInfoEventEmitter() {
+  if (!nativeEventEmitter) {
+    nativeEventEmitter = new NativeEventEmitter(RNCNetInfo);
+  }
+  return nativeEventEmitter;
+}

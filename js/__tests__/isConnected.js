@@ -11,7 +11,7 @@
 
 import {NativeModules} from 'react-native';
 import NetInfo from '../index';
-import {NetInfoEventEmitter} from '../nativeInterface';
+import {getNetInfoEventEmitter} from '../nativeInterface';
 
 const CONNECTED_STATES = [
   {type: 'cellular', connected: true},
@@ -85,7 +85,7 @@ describe('react-native-netinfo', () => {
         const listener = jest.fn();
         NetInfo.isConnected.addEventListener('connectionChange', listener);
 
-        NetInfoEventEmitter.emit(NetInfo.Events.NetworkStatusDidChange, {
+        getNetInfoEventEmitter().emit(NetInfo.Events.NetworkStatusDidChange, {
           connectionType: 'cellular',
           effectiveConnectionType: '4g',
         });
@@ -97,11 +97,11 @@ describe('react-native-netinfo', () => {
         const listener = jest.fn();
         NetInfo.isConnected.addEventListener('connectionChange', listener);
 
-        NetInfoEventEmitter.emit(NetInfo.Events.NetworkStatusDidChange, {
+        getNetInfoEventEmitter().emit(NetInfo.Events.NetworkStatusDidChange, {
           connectionType: 'cellular',
           effectiveConnectionType: '3g',
         });
-        NetInfoEventEmitter.emit(NetInfo.Events.NetworkStatusDidChange, {
+        getNetInfoEventEmitter().emit(NetInfo.Events.NetworkStatusDidChange, {
           connectionType: 'wifi',
           effectiveConnectionType: 'unknown',
         });
@@ -115,7 +115,7 @@ describe('react-native-netinfo', () => {
         NetInfo.isConnected.addEventListener('connectionChange', listener1);
         NetInfo.isConnected.addEventListener('connectionChange', listener2);
 
-        NetInfoEventEmitter.emit(NetInfo.Events.NetworkStatusDidChange, {
+        getNetInfoEventEmitter().emit(NetInfo.Events.NetworkStatusDidChange, {
           connectionType: 'cellular',
           effectiveConnectionType: '2g',
         });
@@ -129,7 +129,7 @@ describe('react-native-netinfo', () => {
         NetInfo.isConnected.addEventListener('connectionChange', listener);
         NetInfo.isConnected.removeEventListener('connectionChange', listener);
 
-        NetInfoEventEmitter.emit(NetInfo.Events.NetworkStatusDidChange, {
+        getNetInfoEventEmitter().emit(NetInfo.Events.NetworkStatusDidChange, {
           connectionType: 'cellular',
           effectiveConnectionType: '3g',
         });
@@ -145,7 +145,7 @@ describe('react-native-netinfo', () => {
 
         NetInfo.isConnected.removeEventListener('connectionChange', listener1);
 
-        NetInfoEventEmitter.emit(NetInfo.Events.NetworkStatusDidChange, {
+        getNetInfoEventEmitter().emit(NetInfo.Events.NetworkStatusDidChange, {
           connectionType: 'unknown',
           effectiveConnectionType: 'unknown',
         });
